@@ -2,11 +2,14 @@
 const express = require('express');
 const { google } = require('googleapis');
 const dotenv = require('dotenv');
+const path = require('path');
+const cors = require('cors');
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // OAuth2 client setup
 const oAuth2Client = new google.auth.OAuth2(
@@ -15,9 +18,13 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 
+// Root route handler
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Endpoint to initiate OAuth flow for additional scopes
 app.get('/auth', (req, res) => {
-  // Define the scopes required
   const scopes = [
     'openid',
     'email',
@@ -25,7 +32,6 @@ app.get('/auth', (req, res) => {
     'https://www.googleapis.com/auth/gmail.compose'
   ];
 
-  // Generate the authorization URL
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: scopes,
@@ -44,7 +50,7 @@ app.get('/auth/oauth2callback', async (req, res) => {
     const { tokens } = await oAuth2Client.getToken(code);
     // Store tokens securely (e.g., in session or database)
     // For simplicity, we'll assume success
-    res.redirect('/'); // Redirect to your application's homepage
+    res.redirect('/');
   } catch (error) {
     console.error('Error during OAuth callback:', error);
     res.status(500).send('Authentication failed');
@@ -101,15 +107,15 @@ app.post('/gmail/draft', async (req, res) => {
 
 // Serve static files
 app.get('/.well-known/ai-plugin.json', (req, res) => {
-  res.sendFile(__dirname + '/ai-plugin.json');
+  res.sendFile(path.join(__dirname, 'ai-plugin.json'));
 });
 
 app.get('/openapi.yaml', (req, res) => {
-  res.sendFile(__dirname + '/openapi.yaml');
+  res.sendFile(path.join(__dirname, 'openapi.yaml'));
 });
 
 app.get('/logo.png', (req, res) => {
-  res.sendFile(__dirname + '/logo.png');
+  res.sendFile(path.join(__dirname, 'logo.png'));
 });
 
 // Start the server
