@@ -1,0 +1,20 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Gmail Draft Plugin",
+  "name_for_model": "gmail_draft",
+  "description_for_human": "Draft emails in Gmail via Gym Spotter AI Portal.",
+  "description_for_model": "Allows the assistant to draft emails on behalf of the user using Gmail.",
+  "auth": {
+    "type": "oauth",
+    "client_url": "https://portal.gymspotter.ai/auth/oauth2",
+    "scope": "https://www.googleapis.com/auth/gmail.compose"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://YOUR_RENDER_URL/openapi.yaml",
+    "is_user_authenticated": true
+  },
+  "logo_url": "https://YOUR_RENDER_URL/logo.png",
+  "contact_email": "support@gymspotter.ai",
+  "legal_info_url": "https://YOUR_RENDER_URL/legal"
+}
