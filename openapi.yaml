@@ -3,7 +3,7 @@ info:
   title: Gmail Draft Plugin API
   version: '1.0.0'
 servers:
-  - url: https://YOUR_RENDER_URL
+  - url: https://gym-spotter-ai-portal-plugin-gmail.onrender.com
 paths:
   /gmail/draft:
     post:
