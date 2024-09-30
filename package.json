@@ -1,0 +1,12 @@
+{
+  "name": "typingmind-plugin-server",
+  "version": "1.0.0",
+  "description": "TypingMind Plugin Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "serve": "^14.0.1"
+  }
+}
