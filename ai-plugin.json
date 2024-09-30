@@ -11,10 +11,10 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://YOUR_RENDER_URL/openapi.yaml",
+    "url": "https://gym-spotter-ai-portal-plugin-gmail.onrender.com/openapi.yaml",
     "is_user_authenticated": true
   },
   "logo_url": "https://YOUR_RENDER_URL/logo.png",
   "contact_email": "support@gymspotter.ai",
-  "legal_info_url": "https://YOUR_RENDER_URL/legal"
+  "legal_info_url": "https://gym-spotter-ai-portal-plugin-gmail.onrender.com/legal"
 }
